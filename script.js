@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const imageCanvas = document.getElementById("imageCanvas");
   const clickLogArea = document.getElementById("clickLogArea");
   const colorLogArea = document.getElementById("colorLogArea");
+  const startLogButton = document.getElementById("startLogButton");
+  const endLogButton = document.getElementById("endLogButton");
 
   // Get the 2D rendering context for the canvas
   const ctx = imageCanvas.getContext("2d");
@@ -17,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const img = new Image();
 
   let startFlag = false;
+  let currentColor = "#000000";
 
   // === 2. Event Listeners ===
 
@@ -25,6 +28,16 @@ document.addEventListener("DOMContentLoaded", () => {
    */
   selectImageBtn.addEventListener("click", () => {
     imageInput.click();
+  });
+
+  startLogButton.addEventListener("click", () => {
+    if (startFlag) return;
+    clickLogArea.value += `graphics.fillStyle = "${currentColor}";\ngraphics.beginPath();\n`;
+    startFlag = true;
+  });
+
+  endLogButton.addEventListener("click", () => {
+    clickLogArea.value += `graphics.closePath();\ngraphics.fill();\ngraphics.stroke();\n`;
   });
 
   /**
@@ -65,7 +78,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const { x, y } = getOriginalCoords(e);
 
     // Log the coordinates to the clickLogArea
-    const logText = `(${x}, ${y})\n`;
+    //const logText = `(${x}, ${y})\n`;
+    let logText = "";
+    if (startFlag) {
+      logText = `graphics.moveTo(${x}, ${y});\n`;
+      startFlag = false;
+    } else {
+      logText = `graphics.lineTo(${x}, ${y});\n`;
+    }
     clickLogArea.value += logText;
     // Auto-scroll to the bottom
     clickLogArea.scrollTop = clickLogArea.scrollHeight;
@@ -87,6 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Convert the RGBA values to a HEX string
     const hexColor = rgbaToHex(pixelData[0], pixelData[1], pixelData[2]);
+    currentColor = hexColor.toLowerCase();
 
     // Display the hex color in the colorLogArea
     colorLogArea.value = hexColor.toUpperCase();

@@ -101,12 +101,12 @@ textarea {
   padding: 8px;
   font-family: "Courier New", Courier, monospace; /* 使用等宽字体 */
   font-size: 14px;
-  resize: vertical; /* 只允许垂直调整大小 */
+  resize: none;
 }
 
 /* 颜色日志的特殊样式 */
-#colorLogArea {
+/* #colorLogArea {
   text-align: center;
   font-weight: bold;
   font-size: 16px;
-}
+} */
