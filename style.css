@@ -79,10 +79,10 @@ button:hover {
   gap: 10px;
 }
 
-.button-group .endLogGroup {
+.button-group .endLogButton {
   background-color: #dc3545;
 }
-.button-group .endLogGroup:hover {
+.button-group .endLogButton:hover {
   background-color: #c82333;
 }
 

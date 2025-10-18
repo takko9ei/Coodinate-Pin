@@ -16,10 +16,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // Store the loaded image object
   const img = new Image();
 
+  let startFlag = false;
+
   // === 2. Event Listeners ===
 
   /**
-   * (Task 5) Handle the 'Select Image' button click.
    * This triggers the hidden file input element.
    */
   selectImageBtn.addEventListener("click", () => {
@@ -27,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /**
-   * (Task 5) Handle the file selection from the input.
    * This is triggered when the user chooses a file.
    */
   imageInput.addEventListener("change", (e) => {
@@ -41,12 +41,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /**
-   * (Task 6) Handle the image 'load' event.
    * This runs after img.src is set and the image data is loaded.
    * We draw the image onto the canvas here.
    */
   img.addEventListener("load", () => {
-    // (Crucial for Task 8) Set the canvas's *internal* dimensions
+    // Set the canvas's *internal* dimensions
     // to match the *original* image's dimensions.
     imageCanvas.width = img.naturalWidth;
     imageCanvas.height = img.naturalHeight;
@@ -59,7 +58,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /**
-   * (Task 8) Handle the 'click' (left-click) event on the canvas.
    * This calculates and logs the original image coordinates.
    */
   imageCanvas.addEventListener("click", (e) => {
@@ -74,7 +72,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /**
-   * (Task 7) Handle the 'contextmenu' (right-click) event on the canvas.
    * This prevents the default menu, gets the pixel color, and displays it.
    */
   imageCanvas.addEventListener("contextmenu", (e) => {
