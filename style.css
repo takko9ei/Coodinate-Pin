@@ -1,0 +1,112 @@
+/* style.css */
+
+/* 基本重置和字体设置 */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  background-color: #f4f7f6;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* 主容器 */
+.container {
+  width: 100%;
+  max-width: 1000px; /* 限制最大宽度，保持桌面端美观 */
+  margin: 0 auto;
+  padding: 25px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column; /* 垂直排列子元素 */
+  gap: 20px; /* 元素之间的间距 */
+}
+
+h1 {
+  text-align: center;
+  color: #1a5a99;
+  margin-top: 0;
+}
+
+/* 图片显示区域 */
+#imageDisplayArea {
+  width: 100%;
+  min-height: 150px; /* 加载前的最小高度 */
+  background-color: #eeeeee;
+  border: 2px dashed #cccccc;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* 确保 canvas 不会溢出 */
+}
+
+/* Canvas 样式 (任务 6: 宽高自适应) */
+#imageCanvas {
+  max-width: 100%; /* 宽度最大为父容器的100% */
+  max-height: 70vh; /* 高度最大为视口的70%，防止图片过高 */
+  object-fit: contain; /* 保持宽高比 */
+  cursor: crosshair; /* 鼠标样式改为十字准星 */
+  border-radius: 4px;
+}
+
+/* 按钮样式 */
+button {
+  padding: 10px 18px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* 按钮组 */
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+.button-group .endLogGroup {
+  background-color: #dc3545;
+}
+.button-group .endLogGroup:hover {
+  background-color: #c82333;
+}
+
+/* 日志区域 */
+.logs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+textarea {
+  width: 100%;
+  box-sizing: border-box; /* 确保 padding 不会撑大宽度 */
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  padding: 8px;
+  font-family: "Courier New", Courier, monospace; /* 使用等宽字体 */
+  font-size: 14px;
+  resize: vertical; /* 只允许垂直调整大小 */
+}
+
+/* 颜色日志的特殊样式 */
+#colorLogArea {
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+}

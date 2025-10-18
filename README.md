@@ -1,0 +1,52 @@
+## README
+
+### 🏡 2D 绘图辅助工具 - Graphics Homework Helper
+
+#### 💡 项目简介 (Project Overview / プロジェクト概要)
+
+| 语言        | 描述                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **中文**    | 这是一个由 **takko** 创建的玩具/工具项目，旨在辅助完成计算机图形学课程作业。该作业要求在 HTML `<canvas>` 上使用基本的 2D 绘图函数（如 `moveTo`, `lineTo` 等）绘制一个房子。为了简化绘制复杂图形（如坐标测量和颜色拾取）的繁琐过程，本项目提供了一个交互式界面来快速生成绘图所需的坐标和颜色代码。                                                                                                                                                                                                             |
+| **English** | This is a toy/tool project developed by **takko** to assist with a Computer Graphics course assignment. The assignment required drawing a house on an HTML `<canvas>` using only basic 2D drawing functions like `moveTo` and `lineTo`. To simplify the tedious process of drawing complex images (such as manually measuring coordinates and picking colors from a reference image), this project provides an interactive interface to quickly generate the necessary coordinate and color code for drawing. |
+| **日本語**  | これは、**takko** が計算機グラフィックスの授業課題を支援するために開発した、おもちゃ/ツールプロジェクトです。この課題では、`moveTo` や `lineTo` などの基本的な 2D 描画関数のみを使用して、HTML の `<canvas>` 上に家を描画することが求められました。複雑な画像を描画する際の面倒な作業（参照画像からの座標の手動測定や色の取得など）を簡略化するために、このプロジェクトは描画に必要な座標と色コードを迅速に生成する対話型インターフェースを提供します。                                                       |
+
+---
+
+### 🎨 核心功能 (Core Features / コア機能)
+
+本项目旨在解决“难以手动测量参考图中点的位置和物体颜色”的问题，通过交互操作自动化生成绘图命令。
+
+1.  **上传图片：** 用户可以上传一张图片作为绘图参考。
+2.  **左键取坐标：** 在上传的图片上点击鼠标左键，可以获取对应点的 $(x, y)$ 坐标。
+3.  **右键取色：** 在上传的图片上点击鼠标右键，可以获取对应点的颜色值（RGB 或 Hex 格式）。
+4.  **`Start` 按钮：**
+    - 在 Log 中插入 `ctx.fillStyle = '...'` (当前 `colorlog` 区域中的颜色)。
+    - 插入 `ctx.beginPath()`。
+    - 接下来的第一次左键点击，将生成 `ctx.moveTo(x, y)` 命令。
+5.  **后续左键点击：** 生成 `ctx.lineTo(x, y)` 命令。
+6.  **`End` 按钮：**
+    - 在 Log 中插入 `ctx.closePath()`。
+    - 插入 `ctx.fill()`。
+    - 插入 `ctx.stroke()`。
+
+---
+
+### 📅 开发日志 (Development Log / 開発ログ)
+
+#### Version 0.1
+
+| 语言        | 描述                                                                                                                                                                                                                                                                                                                   |
+| :---------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **中文**    | - 实现了上传图片、取坐标和取色的基本功能。- 坐标和取色结果分别显示在 `log` 区域中。- 实现了简单的用户界面和样式。- **待办 (Todo)：** 实现插入绘图命令（`moveTo`, `lineTo`, `fillStyle` 等）的逻辑。                                                                                                                    |
+| **English** | - Implemented basic functions for image upload, coordinate acquisition, and color picking. - Coordinates and color results are displayed in the `log` area. - Implemented a simple user interface and styling. - **Todo:** Implement the logic for inserting drawing commands (`moveTo`, `lineTo`, `fillStyle`, etc.). |
+| **日本語**  | - 画像のアップロード、座標の取得、色の取得の基本機能が実装されました。- 座標と色の結果はそれぞれ `log` エリアに表示されます。- シンプルなユーザーインターフェースとスタイルが実装されました。- **未対応 (Todo)：** 描画コマンド（`moveTo`, `lineTo`, `fillStyle` など）を挿入するロジックを実装する必要があります。    |
+
+---
+
+### 🛠️ 待办事项 (To Be Done / TODO)
+
+| 语言        | 待办事项                                                                                                                                                                                                                                                                                                                               |
+| :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **中文**    | - 完善 `Start` 和 `End` 按钮的逻辑，实现自动生成完整的 2D 绘图代码片段。- 实现后续坐标点击自动生成 `lineTo` 命令的逻辑。- 优化代码输出格式，使其可以直接复制粘贴到 `<canvas>` 绘图环境中。                                                                                                                                             |
+| **English** | - Refine the logic for the `Start` and `End` buttons to automatically generate complete 2D drawing code snippets. - Implement the logic for subsequent coordinate clicks to automatically generate `lineTo` commands. - Optimize the code output format so it can be directly copied and pasted into a `<canvas>` drawing environment. |
+| **日本語**  | - `Start` および `End` ボタンのロジックを洗練し、完全な 2D 描画コードスニペットを自動生成できるようにする。- 後続の座標クリックが自動的に `lineTo` コマンドを生成するロジックを実装する。- コードの出力形式を最適化し、`<canvas>` 描画環境に直接コピー＆ペーストできるようにする。                                                     |

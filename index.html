@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>图片选择与显示</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>选择并显示图片</h1>
+
+      <input
+        type="file"
+        id="imageInput"
+        accept="image/*"
+        style="display: none"
+      />
+
+      <button id="selectImageBtn">选择图片</button>
+
+      <div id="imageDisplayArea">
+        <canvas id="imageCanvas"></canvas>
+      </div>
+
+      <div class="logs">
+        <textarea
+          id="clickLogArea"
+          placeholder="这里显示左键点击的原始坐标 (x,y)"
+          rows="8"
+        ></textarea>
+
+        <textarea
+          id="colorLogArea"
+          placeholder="这里显示右键点击的颜色 (HEX)"
+          rows="1"
+        ></textarea>
+      </div>
+
+      <div class="button-group">
+        <button class="startLogGroup">Start</button>
+        <button class="endLogGroup">End</button>
+      </div>
+    </div>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
