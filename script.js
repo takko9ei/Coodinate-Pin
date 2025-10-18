@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const imageCanvas = document.getElementById("imageCanvas");
   const clickLogArea = document.getElementById("clickLogArea");
   const colorLogArea = document.getElementById("colorLogArea");
+  const startLogButton = document.getElementById("startLogButton");
+  const endLogButton = document.getElementById("endLogButton");
 
   // Get the 2D rendering context for the canvas
   const ctx = imageCanvas.getContext("2d");
@@ -16,18 +18,29 @@ document.addEventListener("DOMContentLoaded", () => {
   // Store the loaded image object
   const img = new Image();
 
+  let startFlag = false;
+  let currentColor = "#000000";
+
   // === 2. Event Listeners ===
 
   /**
-   * (Task 5) Handle the 'Select Image' button click.
    * This triggers the hidden file input element.
    */
   selectImageBtn.addEventListener("click", () => {
     imageInput.click();
   });
 
+  startLogButton.addEventListener("click", () => {
+    if (startFlag) return;
+    clickLogArea.value += `graphics.fillStyle = "${currentColor}";\ngraphics.beginPath();\n`;
+    startFlag = true;
+  });
+
+  endLogButton.addEventListener("click", () => {
+    clickLogArea.value += `graphics.closePath();\ngraphics.fill();\ngraphics.stroke();\n`;
+  });
+
   /**
-   * (Task 5) Handle the file selection from the input.
    * This is triggered when the user chooses a file.
    */
   imageInput.addEventListener("change", (e) => {
@@ -41,12 +54,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /**
-   * (Task 6) Handle the image 'load' event.
    * This runs after img.src is set and the image data is loaded.
    * We draw the image onto the canvas here.
    */
   img.addEventListener("load", () => {
-    // (Crucial for Task 8) Set the canvas's *internal* dimensions
+    // Set the canvas's *internal* dimensions
     // to match the *original* image's dimensions.
     imageCanvas.width = img.naturalWidth;
     imageCanvas.height = img.naturalHeight;
@@ -59,7 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /**
-   * (Task 8) Handle the 'click' (left-click) event on the canvas.
    * This calculates and logs the original image coordinates.
    */
   imageCanvas.addEventListener("click", (e) => {
@@ -67,14 +78,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const { x, y } = getOriginalCoords(e);
 
     // Log the coordinates to the clickLogArea
-    const logText = `(${x}, ${y})\n`;
+    //const logText = `(${x}, ${y})\n`;
+    let logText = "";
+    if (startFlag) {
+      logText = `graphics.moveTo(${x}, ${y});\n`;
+      startFlag = false;
+    } else {
+      logText = `graphics.lineTo(${x}, ${y});\n`;
+    }
     clickLogArea.value += logText;
     // Auto-scroll to the bottom
     clickLogArea.scrollTop = clickLogArea.scrollHeight;
   });
 
   /**
-   * (Task 7) Handle the 'contextmenu' (right-click) event on the canvas.
    * This prevents the default menu, gets the pixel color, and displays it.
    */
   imageCanvas.addEventListener("contextmenu", (e) => {
@@ -90,6 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Convert the RGBA values to a HEX string
     const hexColor = rgbaToHex(pixelData[0], pixelData[1], pixelData[2]);
+    currentColor = hexColor.toLowerCase();
 
     // Display the hex color in the colorLogArea
     colorLogArea.value = hexColor.toUpperCase();
