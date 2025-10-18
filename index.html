@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="ISO-8859-1" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>图片选择与显示</title>
+    <title>Coodinate Helper by takko v0.2</title>
 
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
     <div class="container">
-      <h1>选择并显示图片</h1>
+      <h1>Coodinate Helper by takko v0.2</h1>
       <!-- this is a branch test -->
 
       <input
@@ -22,22 +22,26 @@
         style="display: none"
       />
 
-      <button id="selectImageBtn">选择图片</button>
+      <button id="selectImageBtn">Select Image</button>
 
       <div id="imageDisplayArea">
         <canvas id="imageCanvas"></canvas>
       </div>
 
       <div class="logs">
+        <!-- Generated code here -->
+        <!-- TODO: To let user modify the object name, e.g.: "graphics.drawRect" or "ctx.drawRect" -->
         <textarea
           id="clickLogArea"
           placeholder="这里显示左键点击的原始坐标 (x,y)"
           rows="8"
         ></textarea>
 
+        <!-- Current Color here -->
+        <!-- TODO: Modify the css font here -->
         <textarea
           id="colorLogArea"
-          placeholder="这里显示右键点击的颜色 (HEX)"
+          placeholder="Current color here(HEX)"
           rows="1"
         ></textarea>
       </div>
