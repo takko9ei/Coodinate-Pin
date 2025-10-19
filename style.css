@@ -101,7 +101,7 @@ textarea {
   padding: 8px;
   font-family: "Courier New", Courier, monospace; /* 使用等宽字体 */
   font-size: 14px;
-  resize: none;
+  resize: vertical;
 }
 
 /* 颜色日志的特殊样式 */
